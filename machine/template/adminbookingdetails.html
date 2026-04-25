@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin Booking Details</title>
+
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-sixteen.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <h2>Machine <em>Hub</em></h2>
+                </a>
+                <a class="nav-link" href="/adminhome">Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+
+        <!-- ================= FILTER ================= -->
+        <form method="get" class="mb-4">
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label>Status</label>
+                    <select name="status" class="form-control">
+                        <option value="">All</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label>Payment</label>
+                    <select name="pstatus" class="form-control">
+                        <option value="">All</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Not Paid">Not Paid</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label>Type</label>
+                    <select name="type" class="form-control">
+                        <option value="">All</option>
+                        <option value="buy">Buying</option>
+                        <option value="rent">Renting</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 mt-4">
+                    <button type="submit" class="btn btn-primary w-100">Filter</button>
+                </div>
+
+            </div>
+        </form>
+
+        <!-- ================= BUYING ================= -->
+        {% if not request.GET.type or request.GET.type == "buy" %}
+        <h3>Buying Details</h3>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Place</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th>Order Status</th>
+                <th>Delivery Status</th>
+                <th>Payment</th>
+            </tr>
+
+            {% for c in x %}
+            <tr>
+                <td>{{c.name}}</td>
+                <td>{{c.place}}</td>
+                <td>{{c.address}}</td>
+                <td>{{c.mobile}}</td>
+                <td>{{c.status}}</td>
+                <td>{{c.dstatus}}</td>
+
+                <td>
+                    {% if c.pstatus == "Paid" %}
+                    <span class="badge badge-success">Paid</span>
+                    {% else %}
+                    <span class="badge badge-warning">Not Paid</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No buying data</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        <!-- ================= RENTING ================= -->
+        {% if not request.GET.type or request.GET.type == "rent" %}
+        <h3>Renting Details</h3>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Product</th>
+                <th>Days</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Payment</th>
+            </tr>
+
+            {% for c in y %}
+            <tr>
+                <td>{{c.name}}</td>
+                <td>{{c.mob}}</td>
+                <td>{{c.pname}}</td>
+                <td>{{c.ndays}}</td>
+                <td>{{c.amount}}</td>
+                <td>{{c.status}}</td>
+
+                <td>
+                    {% if c.pstatus == "Paid" %}
+                    <span class="badge badge-success">Paid</span>
+                    {% else %}
+                    <span class="badge badge-warning">Not Paid</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No rent data</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+    </div>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

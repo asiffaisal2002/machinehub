@@ -1,0 +1,38 @@
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('',views.index,name='index'),
+    path('login',views.login,name='login'),
+    path('register',views.register,name='register'),
+    path('adminhome', views.adminhome,name='adminhome'),
+    path('contact', views.contact,name='contact'),
+    path('staffregister', views.staffregister,name='staffregister'),
+    path('staffhome', views.staffhome,name='staffhome'),
+    path('staffview', views.staffview, name='staffview'),
+    path('userhome', views.userhome, name='userhome'),
+    path('userviewprofile', views.userviewprofile, name='userviewprofile'),
+    path('staffprofileview', views.staffprofileview, name='staffprofileview'),
+    path('addproduct', views.addproduct, name='addproduct'),
+    path('adminproductview', views.adminproductview, name='adminproductview'),
+    path('adminuserview', views.adminuserview, name='adminuserview'),
+    path('admindeletestaff', views.admindeletestaff, name='admindeletestaff'),
+    path('addrenting', views.addrenting, name='addrenting'),
+    path('adminrentingview', views.adminrentingview, name='adminrentingview'),
+    path('rentbook', views.rentbook, name='rentbook'),
+    path('userproductview', views.userproductview, name='userproductview'),
+    path('payment', views.payment, name='payment'),
+    path('userpurchase', views.userpurchase, name='userpurchase'),
+    path('bookingdetails', views.bookingdetails, name='bookingdetails'),
+    path('rent', views.rent, name='rent'),
+    path('rentpayment', views.rentpayment, name='rentrentpayment'),
+    path('paymentdetails', views.paymentdetails, name='paymentdetails'),
+    path('staffbookingdetails', views.staffbookingdetails, name='staffbookingdetails'),
+    path('tpayment', views.payment, name='tpayment'),
+    path('orderstatus', views.orderstatus, name='orderstatus'),
+    path('staffdeliverydetails', views.staffdeliverydetails, name='staffdeliverydetails'),
+    path('rentstatus', views.rentstatus, name='rentstatus'),
+    path('staffproductview', views.staffproductview, name='staffproductview'),
+    path('adminbookingdetails', views.adminbookingdetails, name='adminbookingdetails'),
+
+]
+
